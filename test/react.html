@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+  <!-- 개발자 모드 켰을 때 head 부분은 babel이 브라우저가 읽을 수 있는 코드로 바꿔서 넣어둠 (JSX 코드 변환) -->
+  <body>
+    <div id="root"></div>
+    <div id="root2"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+
+    const root = document.getElementById("root");
+
+    // 아래 주석 부분을 jsx 문법으로 작성 한 것 _ 브라우저는 jsx 문법을 이해하지 못한다
+    const Title = () => (
+      <h3 id="title" onMouseEnter={ () => 
+        console.log("JSX mouse enter")
+      }>
+      Hello. JSX 문법을 만들어보자
+    </h3>
+    );
+
+    const Button = () => (
+      <button
+        style= {{
+          backgroundColor: "tomato",
+          }}
+          onClick= {() => 
+            console.log("JSX button Click")
+          }
+      >
+      Click me
+      </button>
+    );
+
+    // button 으로 적으면 html button 태그로 생각한다.
+    const Container = () => (
+      <div>
+        <Title />
+        <Button />
+      </div>
+    )
+    ReactDOM.render(<Container/>, root);
+
+
+
+
+
+    // span을 root 안에 랜더링 해줘 (개발자모드 elements 에서 확인가능)
+    const span = React.createElement("h3", { 
+      onMouseEnter : () =>{
+        console.log("React mouse enter")
+        }
+      },
+       "Hello. React 기본문법"
+      );
+
+    const btn = React.createElement("button", {
+      onClick: () => 
+        console.log("React button Click"),
+        style: {
+          backgroundColor: "green"
+          }
+      },
+     "Clikced me"
+     );
+    
+    // div, 속성, text로 화면에 보여줄 값
+    const container2 = React.createElement("div", null, [span, btn]);
+
+    // container를 root 안에 렌더링
+    ReactDOM.render(container2, root2);
+
+
+  </script>
+</html>

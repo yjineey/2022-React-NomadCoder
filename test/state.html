@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+
+  const root = document.getElementById("root");
+  const counter = 0;
+  
+  function App (){
+    const [counter, setCounter] = React.useState(0);
+   
+    const onClick = () => {
+      // setCounter(counter + 1) 
+      setCounter((counter)=> counter + 1); 
+    }
+
+    return (
+      <div>
+        <h3 id="title">State 문법</h3>  
+        <h5>Total Count :  {counter}</h5>
+          <button onClick={onClick}> Click me</button>
+      </div>
+    )
+   }
+
+  ReactDOM.render(<App/>, root);
+
+  </script>
+</html>
